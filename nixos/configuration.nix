@@ -37,64 +37,64 @@
     };
   };
 
-   # Bootloader.
-    boot.loader.systemd-boot.enable = true;
-    boot.loader.efi.canTouchEfiVariables = true;
-    boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
-    # Setup keyfile
-    boot.initrd.secrets = {
-      "/crypto_keyfile.bin" = null;
-    };
+  # Setup keyfile
+  boot.initrd.secrets = {
+    "/crypto_keyfile.bin" = null;
+  };
 
-    # Enable swap on luks
-    boot.initrd.luks.devices."luks-4bbb974e-cae5-4ee8-8e7b-6ef52773e375".device = "/dev/disk/by-uuid/4bbb974e-cae5-4ee8-8e7b-6ef52773e375";
-    boot.initrd.luks.devices."luks-4bbb974e-cae5-4ee8-8e7b-6ef52773e375".keyFile = "/crypto_keyfile.bin";
+  # Enable swap on luks
+  boot.initrd.luks.devices."luks-4bbb974e-cae5-4ee8-8e7b-6ef52773e375".device = "/dev/disk/by-uuid/4bbb974e-cae5-4ee8-8e7b-6ef52773e375";
+  boot.initrd.luks.devices."luks-4bbb974e-cae5-4ee8-8e7b-6ef52773e375".keyFile = "/crypto_keyfile.bin";
 
 
   networking.hostName = "james-nixos";
 
-    # Enable networking
-    networking.networkmanager.enable = true;
+  # Enable networking
+  networking.networkmanager.enable = true;
 
 
   time.timeZone = "Australia/Melbourne";
-# Select internationalisation properties.
-    i18n.defaultLocale = "en_AU.utf8";
-      # Enable the X11 windowing system.
-      services.xserver.enable = true;
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_AU.utf8";
+  # Enable the X11 windowing system.
+  services.xserver.enable = true;
 
-      # Enable the XFCE Desktop Environment.
-      services.xserver.displayManager.lightdm.enable = true;
-      services.xserver.desktopManager.xfce.enable = true;
+  # Enable the XFCE Desktop Environment.
+  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.desktopManager.xfce.enable = true;
 
-      # Configure keymap in X11
-      services.xserver = {
-        layout = "au";
-        xkbVariant = "";
-      };
-    # Enable CUPS to print documents.
-    services.printing.enable = true;
+  # Configure keymap in X11
+  services.xserver = {
+    layout = "au";
+    xkbVariant = "";
+  };
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
 
-    hardware.bluetooth.enable = true;
-    services.blueman.enable = true;
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
 
-    # Enable sound with pipewire.
-    sound.enable = true;
-    hardware.pulseaudio.enable = false;
-    security.rtkit.enable = true;
-    services.pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      # If you want to use JACK applications, uncomment this
-      #jack.enable = true;
+  # Enable sound with pipewire.
+  sound.enable = true;
+  hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    #jack.enable = true;
 
-      # use the example session manager (no others are packaged yet so this is enabled by default,
-      # no need to redefine it in your config for now)
-      # media-session.enable = true;
-    };
+    # use the example session manager (no others are packaged yet so this is enabled by default,
+    # no need to redefine it in your config for now)
+    # media-session.enable = true;
+  };
 
 
 
@@ -128,12 +128,12 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    	vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
- 	    tailscale
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    tailscale
   ];
 
   services.tailscale = {
-	enable = true;
+    enable = true;
   };
 
   # Some programs need SUID wrappers, can be configured further or are
